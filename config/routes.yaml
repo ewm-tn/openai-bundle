@@ -1,0 +1,3 @@
+ewm_openai_bundle:
+  type: attribute
+  resource: '../src/Controller/'

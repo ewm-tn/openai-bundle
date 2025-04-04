@@ -1,0 +1,37 @@
+{
+    "name": "ewm/openai-bundle",
+    "version": "1.0.0",
+    "description": "Open Ai Bundle for Sulu",
+    "keywords": [
+        "sulu",
+        "symfony",
+        "openai",
+        "ai",
+        "media",
+        "bundle",
+        "php",
+        "cms"
+    ],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amir souissi",
+            "email": "a.souissi@ewm.swiss"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "ext-fileinfo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "EwmOpenaiBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EwmOpenaiBundle\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+parameters:
+  log_dir: '%kernel.project_dir%/var/log'
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  EwmOpenaiBundle\:
+    resource: '../src/'
+    public: true
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/EwmOpenaiBundle.php'
