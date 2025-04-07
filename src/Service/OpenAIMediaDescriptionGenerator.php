@@ -86,7 +86,7 @@ PROMPT;
     public function __construct()
     {
         $this->client = HttpClient::create();
-        $this->apiKey = $_ENV['OPEN_API_KEY'];
+        $this->apiKey = $_ENV['OPEN_API_KEY'] ?? '';
     }
 
     /**
