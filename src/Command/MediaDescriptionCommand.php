@@ -89,7 +89,7 @@ class MediaDescriptionCommand extends Command
                             $publicUrl = $hostname . $publicUrl . '&inline=1';
                             $generated = $this->generator->generateDescription($publicUrl, $langue);
                             if ($generated) {
-                                $generated = \str_replace('“', '', $generated);
+                                $generated = \str_replace(array('“', '"'), '', $generated);
                                 $this->mediaManager->save(null, [
                                     'id' => $mediaId,
                                     'locale' => $langue,
