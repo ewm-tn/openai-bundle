@@ -20,3 +20,29 @@ Perfect for automating metadata in Sulu CMS!
 1. Install the bundle via Composer:
    ```bash
    composer require ewm/openai-bundle
+
+2. Add the necessary environment variables to your `.env` file:
+
+   Before using the bundle, ensure that the following environment variables are added to your `.env` file:
+
+   - **`HOSTNAME`**: The public URL or hostname of your website. This variable defines the base URL from which the bundle can access resources, such as images.
+
+     Example:
+     ```dotenv
+     HOSTNAME=https://example.com
+     ```
+
+   - **`OPEN_API_KEY`**: The API key required to authenticate your requests to the OpenAI service. You can generate and obtain this key directly from your OpenAI account.
+
+     Example:
+     ```dotenv
+     OPEN_API_KEY=your-api-key-here
+     ```
+
+   **Example `.env` file:**
+   ```dotenv
+   # OpenAI API Configuration
+   HOSTNAME=https://example.com
+   OPEN_API_KEY=your-api-key-here
+
+
