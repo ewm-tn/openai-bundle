@@ -78,11 +78,11 @@ class MediaDescriptionCommand extends Command
 
                 $processedCount = 0;
                 foreach ($media as $m) {
+                    $mediaLangue = null;
                     if (\str_contains($m->getFiles()->first()->getFileVersions()->first()->getMimeType(), 'image')) {
                         $mediaId = $m->getId();
                         $mediaLangue = $this->mediaManager->getById($mediaId, $langue);
-                        $description = $mediaLangue->getDescription();
-                        if (empty($description)) {
+                        if (empty($mediaLangue->getDescription())) {
                             $filename = $m->getFiles()->first()->getFileVersions()->first()->getName();
                             $title = $mediaLangue->getTitle() ?? \pathinfo($filename, \PATHINFO_FILENAME);
                             $publicUrl = $this->mediaManager->getUrl($mediaId, $filename, true);
@@ -99,6 +99,7 @@ class MediaDescriptionCommand extends Command
                                 $this->loggerService::logMessage("{$mediaId} processed for language {$langue}");
                                 ++$processedCount;
                             }
+                            $generated = null;
                             $progressBar->advance();
                         }
                     }
