@@ -73,7 +73,7 @@ class MediaDescriptionCommand extends Command
                 $progressBar->setFormat(
                     '%current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s% %message%',
                 );
-                $progressBar->setMessage('Starting...');
+                $progressBar->setMessage("Processing language: {$langue}");
                 $progressBar->start();
 
                 $processedCount = 0;
@@ -87,14 +87,14 @@ class MediaDescriptionCommand extends Command
                             $title = $mediaLangue->getTitle() ?? \pathinfo($filename, \PATHINFO_FILENAME);
                             $publicUrl = $this->mediaManager->getUrl($mediaId, $filename, true);
                             $publicUrl = $hostname . $publicUrl . '&inline=1';
-                            $description = $this->generator->generateDescription($publicUrl, $langue);
-                            if ($description) {
-                                $description = \str_replace('“', '', $description);
+                            $generated = $this->generator->generateDescription($publicUrl, $langue);
+                            if ($generated) {
+                                $generated = \str_replace('“', '', $generated);
                                 $this->mediaManager->save(null, [
                                     'id' => $mediaId,
                                     'locale' => $langue,
                                     'title' => $title,
-                                    'description' => $description,
+                                    'description' => $generated,
                                 ], null);
                                 $this->loggerService::logMessage("{$mediaId} processed for language {$langue}");
                                 ++$processedCount;
