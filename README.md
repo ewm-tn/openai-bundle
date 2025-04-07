@@ -45,4 +45,25 @@ Perfect for automating metadata in Sulu CMS!
    HOSTNAME=https://example.com
    OPEN_API_KEY=your-api-key-here
 
+## 🛠 Usage
+
+After installation and configuration, you can generate media descriptions using the following console command:
+
+```bash
+php bin/console media:create-description
+
+```
+This command will:
+
+✅ Automatically generate AI-based image descriptions for all media items in your Sulu CMS that do not yet have a description.
+
+🌐 Processes all supported locales defined in your Sulu webspace configuration (e.g., en, fr, de, es, it).
+
+🖼 Targets only image media files, ensuring that only relevant media are analyzed.
+
+📊 Displays a progress bar in the terminal to track processing in real-time.
+
+📝 Logs all activity (including errors and processed image) in a dedicated file: `/var/log/openai.log`
+
+
 
