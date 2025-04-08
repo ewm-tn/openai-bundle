@@ -96,8 +96,16 @@ PROMPT;
      */
     public function generateDescription(string $imageUrl, string $locale): ?string
     {
+        $prompts = [
+            'fr' => self::PROMPT_FR,
+            'en' => self::PROMPT_EN,
+            'de' => self::PROMPT_DE,
+            'it' => self::PROMPT_IT,
+            'es' => self::PROMPT_ES,
+        ];
+
         try {
-            $prompt = 'fr' === $locale ? self::PROMPT_FR : self::PROMPT_EN;
+            $prompt = $prompts[$locale] ?? self::PROMPT_EN;
             $response = $this->client->request('POST', 'https://api.openai.com/v1/chat/completions', [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->apiKey,
