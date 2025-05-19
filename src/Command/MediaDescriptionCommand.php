@@ -20,15 +20,24 @@ class MediaDescriptionCommand extends Command
     public const SUPPORTED_LANGUAGES = [
         'en', 'fr', 'de', 'es', 'it',
     ];
-
+    private OpenAIMediaDescriptionGenerator $generator;
+    private LoggerService $loggerService;
+    private MediaRepositoryInterface $mediaRepository;
+    private MediaManagerInterface $mediaManager;
+    private WebspaceManagerInterface $webspaceManager;
     public function __construct(
-        private readonly OpenAIMediaDescriptionGenerator $generator,
-        private readonly LoggerService $loggerService,
-        private readonly MediaRepositoryInterface $mediaRepository,
-        private readonly MediaManagerInterface $mediaManager,
-        private readonly WebspaceManagerInterface $webspaceManager,
+        OpenAIMediaDescriptionGenerator $generator,
+        LoggerService $loggerService,
+        MediaRepositoryInterface $mediaRepository,
+        MediaManagerInterface $mediaManager,
+        WebspaceManagerInterface $webspaceManager
     ) {
         parent::__construct();
+        $this->generator = $generator;
+        $this->loggerService = $loggerService;
+        $this->mediaRepository = $mediaRepository;
+        $this->mediaManager = $mediaManager;
+        $this->webspaceManager = $webspaceManager;
     }
 
     protected function configure(): void

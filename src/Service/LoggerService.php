@@ -9,9 +9,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 final class LoggerService
 {
     private static string $log;
-
-    public function __construct(private readonly ParameterBagInterface $parameterBag)
+    private ParameterBagInterface $parameterBag;
+    public function __construct(ParameterBagInterface $parameterBag)
     {
+        $this->parameterBag = $parameterBag;
         self::$log = $this->parameterBag->get('log_dir');
     }
 
