@@ -25,13 +25,15 @@ class MediaDescriptionCommand extends Command
     private MediaRepositoryInterface $mediaRepository;
     private MediaManagerInterface $mediaManager;
     private WebspaceManagerInterface $webspaceManager;
+
     public function __construct(
         OpenAIMediaDescriptionGenerator $generator,
-        LoggerService $loggerService,
-        MediaRepositoryInterface $mediaRepository,
-        MediaManagerInterface $mediaManager,
-        WebspaceManagerInterface $webspaceManager
-    ) {
+        LoggerService                   $loggerService,
+        MediaRepositoryInterface        $mediaRepository,
+        MediaManagerInterface           $mediaManager,
+        WebspaceManagerInterface        $webspaceManager
+    )
+    {
         parent::__construct();
         $this->generator = $generator;
         $this->loggerService = $loggerService;
@@ -93,7 +95,7 @@ class MediaDescriptionCommand extends Command
                         $mediaLangue = $this->mediaManager->getById($mediaId, $langue);
                         if (empty($mediaLangue->getDescription())) {
                             $filename = $m->getFiles()->first()->getFileVersions()->first()->getName();
-                            $title = $mediaLangue->getTitle() ?? \pathinfo($filename, \PATHINFO_FILENAME);
+                            $title = !empty($mediaLangue->getTitle()) ? $mediaLangue->getTitle() : \pathinfo($filename, \PATHINFO_FILENAME);
                             $publicUrl = $this->mediaManager->getUrl($mediaId, $filename, true);
                             $publicUrl = $hostname . $publicUrl . '&inline=1';
                             $generated = $this->generator->generateDescription($publicUrl, $langue);
